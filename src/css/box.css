@@ -1,0 +1,7 @@
+.box{
+  transform: translateY(-5px);
+  box-shadow: 0 4px 6px rgba(0.3,0,0,0.3);
+  width: 900px;
+  background-color: #f1f9ff;
+  cursor: pointer;
+}
