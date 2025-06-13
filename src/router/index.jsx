@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import PublicRoute from '../layout/PublicRoute'
 import PrivateRoute from '../layout/PrivateRoute'
+import AuthRoute from "../layout/AuthRoute";
 import { Navigate } from 'react-router-dom'
 
 import Dashboard from '../pages/dashboard'
@@ -12,7 +13,7 @@ import VerifyEmail from '../pages/auth/verify-email'
 
 import ViewSingleProduct from '../views/product/ViewSingleProduct'
 import Cart from '../views/cart/ViewCart'
-import AuthRoute from "../layout/AuthRoute";
+import Order from '../views/order/viewOrder'
 
 const router = createBrowserRouter([
     //login,register,reset password,forget password,dashboard is public route
@@ -70,6 +71,10 @@ const router = createBrowserRouter([
             {
                 path: '/cart',
                 element: <Cart />
+            },
+            {
+                path: '/order',
+                element: <Order />
             },
         ]
     }

@@ -67,6 +67,9 @@ const Header = () => {
   const handleCart=()=>{
     navigate("/cart")
   }
+  const handleOrder=()=>{
+    navigate('/order')
+  }
 
   const handleClose = () => setOpenModal(false);
 
@@ -99,6 +102,9 @@ const Header = () => {
             <img width="40" height="40" src="/image/cart.png" alt="Profile" className="rounded-circle border"/>
           </p>
           
+          <p className="mb-0 text-primary" role="button" style={{ cursor: 'pointer' }} onClick={handleOrder}>
+            <img width="40" height="40" src="/image/order.png" alt="Profile" className="rounded-circle border"/>
+          </p>
 
         </div>
       </nav>

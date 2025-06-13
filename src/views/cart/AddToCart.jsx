@@ -60,7 +60,7 @@ const AddToCart = ({ product }) => {
 
     return (
         
-            <Button onClick={handleAddToCart} variant="outlined" color="primary" style={{padding:'5px 70px '}}>
+            <Button onClick={handleAddToCart} variant="outlined" color="primary" style={{padding:'5px 80px '}}>
                 Add To Cart
             </Button>
     

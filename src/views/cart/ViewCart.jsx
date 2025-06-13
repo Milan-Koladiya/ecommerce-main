@@ -8,54 +8,148 @@ import {
     Typography,
     Box
 } from '@mui/material';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
-import useCart from '../../hooks/useCart'
+import { useNavigate } from 'react-router-dom';
+import useCart from '../../hooks/useCart';
+import DynamicModal from '../../components/dynamicModal';
+import EditCart from './EditCart';
+import Loader from '../../components/common/loader';
+import OrderModal from '../order/CreateOrder';
+import '../../css/box.css'
 
 const ViewCart = () => {
     const { viewCartOfUser } = useCart();
-    const [product, setProduct] = useState([]);
-    const navigate = useNavigate()
+    const [cart, setCart] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
+    const [openModal, setOpenModal] = useState(false);
+    const [selectedCartItem, setSelectedCartItem] = useState(null);
+    const [openOrderModal, setOpenOrderModal] = useState(false);
+    const [selectedItems, setSelectedItems] = useState([]);
 
     useEffect(() => {
-        fetchProduct();
+        fetchCart();
     }, []);
 
-    const fetchProduct = async () => {
-        const res = await viewCartOfUser();
-        console.log("cart data",res.payload.data)
-        setProduct(res.payload.data);
+    const fetchCart = async () => {
+        try {
+            const res = await viewCartOfUser();
+            if (res?.payload?.data?.length > 0) {
+                setCart(res.payload.data);
+            } else {
+                setCart([]);
+            }
+        } catch (err) {
+            setError(true);
+        } finally {
+            setLoading(false);
+        }
     };
+
+    const handleOpenModal = (item) => {
+        setSelectedCartItem(item);
+        setOpenModal(true);
+    };
+
+    const handleClose = () => {
+        setOpenModal(false);
+        setSelectedCartItem(null);
+    };
+
+    const handleCartUpdated = async () => {
+        await fetchCart();
+    };
+
+    const handlePlaceOrder = () => {
+        const itemsToOrder = cart.map((item) => ({
+            product_id: item.product.id,
+            price: item.product.price*item.quantity,
+            quantity:item.quantity
+        }));
+        setSelectedItems(itemsToOrder);
+        setOpenOrderModal(true);
+    };
+
+
 
     return (
         <div>
-            <h2 style={{ marginLeft: '100px', fontFamily: 'serif', fontStyle: 'italic', marginTop: '30px' }}>Products</h2>
-            <Box sx={{ padding: 4 }}>
-                <Box sx={{ marginLeft: '80px', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 10 }}>
-                    {product.map((pro, index) => (
-                        <Card key={pro.id || index} sx={{ width: '280px', margin: 'auto' }}>
-                            <CardMedia sx={{ marginLeft: '15px', marginRight: '15px', height: 200 }} image={pro.image_url || '../../public/image/profile.png'} title={pro.name} />
-                            <CardContent>
-                                <Typography gutterBottom variant="h6" fontWeight="bold" fontFamily={'serif'}>
-                                    {pro.name}
+            <h2 style={{ marginLeft: '100px', fontFamily: 'serif', fontStyle: 'italic', marginTop: '30px' }}>
+                Products
+            </h2>
+            <Box className='boxCart'>
+                {loading ? (
+                    <Loader />
+                ) : error ? (
+                    <Typography sx={{ marginLeft: '100px', color: 'red' }}>
+                        Failed to load cart.
+                    </Typography>
+                ) : cart.length === 0 ? (
+                    <Typography sx={{ marginLeft: '100px', fontFamily: 'serif', fontSize: 20 }}>
+                        No products found in the cart.
+                    </Typography>
+                ) : (
+                    <Box sx={{ marginLeft: '40px', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 10 }}>
+                        {cart.map((cartItem, index) => (
+                            <Card key={cartItem.id || index} sx={{ width: '280px' }}>
+                                <Typography
+                                    marginLeft='230px'
+                                    color='#ad1457'
+                                    gutterBottom
+                                    variant="h6"
+                                    fontWeight="bold"
+                                    fontFamily={'serif'}
+                                    sx={{ cursor: 'pointer' }}
+                                    onClick={() => handleOpenModal(cartItem)}
+                                >
+                                    Edit
                                 </Typography>
-                                <Typography variant="body2" color="text.secondary" sx={{ minHeight: 40 }}>
-                                    {pro.description || 'No description available'}
-                                </Typography>
-                                <Typography variant="body1" fontWeight="bold" >
-                                    ₹{pro.price}
-                                </Typography>
-                            </CardContent>
-                            <CardActions>
-                                <Button size="small" variant="contained" fullWidth onClick={() => navigate(`/product/${pro.id}`)}>
-                                    View More
-                                </Button>
-                            </CardActions>
-                        </Card>
-                    ))}
-                </Box>
-            </Box>
-        </div>
-    )
-}
 
-export default ViewCart
+                                <CardMedia
+                                    sx={{ marginLeft: '10px', marginRight: '10px', height: 130 }}
+                                    image={cartItem.product.image_url || '/image/profile.png'}
+                                    title={cartItem.product.name}
+                                />
+                                <CardContent>
+                                    <Typography gutterBottom variant="h6" fontWeight="bold" fontFamily={'serif'}>
+                                        {cartItem.product.name}
+                                    </Typography>
+                                    <Typography variant="body2" color="text.secondary" sx={{ minHeight: 30 }}>
+                                        {cartItem.product.description || 'No description available'}
+                                    </Typography>
+                                    <Typography variant="body1" fontWeight="bold" color="text.secondary" sx={{ minHeight: 30 }}>
+                                        Quantity: {cartItem.quantity}
+                                    </Typography>
+                                    <Typography variant="body1" fontWeight="bold">
+                                        ₹{cartItem.product.price}
+                                    </Typography>
+                                </CardContent>
+                            </Card>
+
+                        ))}
+                    </Box>
+                )}
+
+            </Box>
+            <Box sx={{ display: 'flex', justifyContent: 'flex-end',mb:10,mr:5, mt: 4 }}>
+                <Button variant="contained" size="large" onClick={handlePlaceOrder}>
+                    Place Order
+                </Button>
+            </Box>
+
+            <OrderModal
+                open={openOrderModal}
+                onClose={() => setOpenOrderModal(false)}
+                items={selectedItems}
+                totalAmount={selectedItems.reduce((sum, item) => sum + item.price, 0)}
+            />
+
+            {selectedCartItem && (
+                <DynamicModal show={openModal} onHide={handleClose} title="Edit Cart">
+                    <EditCart cartItem={selectedCartItem} onClose={handleClose} onCartUpdated={handleCartUpdated} />
+                </DynamicModal>
+            )}
+        </div>
+    );
+};
+
+export default ViewCart;
