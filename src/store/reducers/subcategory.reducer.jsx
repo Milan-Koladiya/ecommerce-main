@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getSubcategoriesByCategoryIdAction } from '../actions/subcategory.action';
+import { getSubcategoriesByCategoryIdAction,fetchSubcategoryAction } from '../actions/subcategory.action';
 
 const subcategorySlice = createSlice({
     name: 'subcategory',
@@ -9,6 +9,7 @@ const subcategorySlice = createSlice({
         error: false,
         apiName: "",
         alertType: "",
+        subcategories:[]
     },
     reducers: {
         clearMessage: (state) => {
@@ -38,6 +39,26 @@ const subcategorySlice = createSlice({
             state.loading = "";
             state.error = action.payload;
             state.apiName = "subcategory/category";
+        });
+
+        //subcategory
+
+        builder.addCase(fetchSubcategoryAction.pending, (state) => {
+            state.apiName = "subcategory/getall";
+            state.loading = "subcategory/getall";
+        });
+        builder.addCase(fetchSubcategoryAction.fulfilled, (state, action) => {
+            state.loading = "";
+            state.apiName = "subcategory/getall";
+            state.loading = "subcategory/getall";
+            state.message = action.payload.message;
+            state.subcategories=action.payload
+            
+        });
+        builder.addCase(fetchSubcategoryAction.rejected, (state, action) => {
+            state.loading = "";
+            state.error = action.payload;
+            state.apiName = "subcategory/getall";
 
         });
     },

@@ -7,6 +7,7 @@ import Loader from '../../components/common/loader';
 import Alert from '../../components/common/alert';
 import AddToCart from '../../views/cart/AddToCart'
 import '../../css/box.css';
+import Snackbar from '@mui/material/Snackbar';
 
 const ViewSingleProduct = () => {
     const { id } = useParams();
@@ -34,25 +35,30 @@ const ViewSingleProduct = () => {
 
     return (
         <div>
-            <h2 style={{ marginLeft: '200px', fontFamily: 'serif', fontStyle: 'italic', marginTop: '30px' }}>Product</h2>
+            <h2 style={{ textAlign:'center', fontFamily: 'serif', fontStyle: 'italic', marginTop: '30px' }}>Product</h2>
 
             {apiName === 'cart/addToCart' && message && (
                 <Box sx={{ mx: 'auto', width: 'fit-content', mt: 2 }}>
-                    <Alert type={alertType} message={message} />
+                    <Snackbar
+                        open={open}
+                        autoHideDuration={6000}
+                        message={message+"!"}
+                    />
+                    {/* <Alert type={alertType} message={message} /> */}
                 </Box>
             )}
 
-            <Box className="box" marginLeft={'200px'} marginTop={'50px'} p={5} borderRadius={'10px'} bgcolor={'#f8f9fa'}>
+            <Box className="box" marginLeft={'500px'} marginTop={'50px'} p={5} borderRadius={'10px'} bgcolor={'#f8f9fa'}>
                 <Grid container spacing={4}>
                     <Grid item xs={12} md={6}>
 
                         <Box display="flex" flexDirection="column" alignItems="center">
-                            <img src={product.image_url} alt={product.name} style={{ width: "100%", maxWidth: 600, borderRadius: 8 }}/>
+                            <img src={product.image_url} alt={product.name} style={{ width: "100%", maxWidth: 600, borderRadius: 8 }} />
                         </Box>
 
                         <Box marginTop={'20px'} display="flex" gap={2} mb={3}>
                             <AddToCart product={product} />
-                            <Button variant="contained" color="secondary" style={{padding:'10px 90px '}}>
+                            <Button variant="contained" color="secondary" style={{ padding: '10px 90px ' }}>
                                 Buy Now
                             </Button>
                         </Box>

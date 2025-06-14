@@ -9,8 +9,24 @@ export const getSubcategoriesByCategoryIdAction = createAsyncThunk(
       return thunkAPI.fulfillWithValue({ category_id, data: response.data });
     } catch (error) {
       return thunkAPI.rejectWithValue(
-        error.response?.data?.message || "Failed to fetch subcategories"
+        error.response?.data?.message || "Failed to fetch subcategories by category"
       );
     }
   }
 );
+
+
+export const fetchSubcategoryAction = createAsyncThunk(
+  "subcategory/getall",
+  async (_, thunkAPI) => {
+    try {
+      const response = await API.get(`/subcategories/allsubcategory`);
+      return thunkAPI.fulfillWithValue(response.data);
+    }
+    catch (error) {
+      return thunkAPI.rejectWithValue(
+        error.response?.data?.message || "Failed to fetch subcategories"
+      );
+    }
+  }
+)

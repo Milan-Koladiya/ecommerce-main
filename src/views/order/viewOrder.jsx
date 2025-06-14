@@ -31,7 +31,7 @@ const ViewOrder = () => {
 
     return (
         <div>
-            <h2 style={{ marginLeft: '100px', fontFamily: 'serif', fontStyle: 'italic', marginTop: '30px' }}>
+            <h2 style={{textAlign:'center', margin:'20px 150px', fontFamily: 'serif', fontStyle: 'italic', marginTop: '30px' }}>
                 Products
             </h2>
             <Box sx={{ padding: 4 }}>

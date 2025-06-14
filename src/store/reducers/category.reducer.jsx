@@ -29,7 +29,7 @@ const categorySlice = createSlice({
         });
         builder.addCase(fetchCategoryAction.fulfilled, (state, action) => {
             state.loading = "";
-            state.profile = action.payload.message;
+            state.category = action.payload.message;
             state.apiName = 'category/getAll';
             state.alertType = 'success'
 

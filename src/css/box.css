@@ -7,11 +7,11 @@
 }
 
 .boxCart{
-    padding: 20px;
+    padding: 25px;
   transform: translateY(-5px);
   box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-  width:1550px;
-  margin-left: 50px;
+  width: calc(100% - 20%);
+  margin:auto;
   background-color: #f1f9ff;
   cursor: pointer;
 }

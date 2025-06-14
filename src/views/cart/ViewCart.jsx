@@ -73,7 +73,7 @@ const ViewCart = () => {
 
     return (
         <div>
-            <h2 style={{ marginLeft: '100px', fontFamily: 'serif', fontStyle: 'italic', marginTop: '30px' }}>
+            <h2 style={{textAlign:'center', margin:'20px 150px', fontFamily: 'serif', fontStyle: 'italic', marginTop: '30px' }}>
                 Products
             </h2>
             <Box className='boxCart'>
@@ -88,7 +88,7 @@ const ViewCart = () => {
                         No products found in the cart.
                     </Typography>
                 ) : (
-                    <Box sx={{ marginLeft: '40px', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 10 }}>
+                    <Box sx={{ marginLeft: '22px', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 10 }}>
                         {cart.map((cartItem, index) => (
                             <Card key={cartItem.id || index} sx={{ width: '280px' }}>
                                 <Typography

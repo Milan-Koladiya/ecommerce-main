@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { getSubcategoriesByCategoryIdAction } from "../store/actions/subcategory.action";
+import { getSubcategoriesByCategoryIdAction,fetchSubcategoryAction } from "../store/actions/subcategory.action";
 import { clearMessage } from "../store/reducers/subcategory.reducer";
 
 const useSubcategory = () => {
@@ -11,12 +11,18 @@ const useSubcategory = () => {
         message,
         apiName,
         alertType,
-        subcategoriesByCategory
+        subcategoriesByCategory,
+        subcategories
     } = useSelector((state) => state.subcategory);
 
     const getSubcategoryByCategory = async (category_id) => {
-        await dispatch(getSubcategoriesByCategoryIdAction(category_id));
+        return await dispatch(getSubcategoriesByCategoryIdAction(category_id));
     };
+
+    const viewSubcategory=async()=>{
+        return await dispatch(fetchSubcategoryAction())
+        
+    }
 
     const closeAlert = () => {
         dispatch(clearMessage());
@@ -30,7 +36,9 @@ const useSubcategory = () => {
         apiName,
         alertType,
         subcategoriesByCategory,
+        subcategories,
         getSubcategoryByCategory,
+        viewSubcategory,
         closeAlert,
     };
 };

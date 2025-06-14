@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { clearMessage, errorMessage } from '../store/reducers/category.reducer'
 import { fetchCategoryAction } from '../store/actions/category.action'
 
-const useProduct = () => {
+const useCategory= () => {
     const {
         loading,
         message,
@@ -14,7 +14,7 @@ const useProduct = () => {
     const dispatch = useDispatch();
 
 
-    const fetchCategory=async()=>{
+    const viewCategory=async()=>{
         return await dispatch(fetchCategoryAction())
     }
 
@@ -30,10 +30,10 @@ const useProduct = () => {
         apiName,
         alertType,
         closeAlert,
-        fetchCategory
+        viewCategory
 
     }
 
 }
 
-export default useProduct
+export default useCategory

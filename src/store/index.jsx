@@ -7,6 +7,7 @@ import userSlice from './reducers/user.reducers'
 import orderSlice from './reducers/order.reducer' 
 import paymentsSlice from './reducers/payment.reducers'
 import subcategorySlice from './reducers/subcategory.reducer'
+import categorySlice from './reducers/category.reducer'
 
 const store = configureStore({
     reducer:{
@@ -16,7 +17,8 @@ const store = configureStore({
         user:userSlice,
         order:orderSlice,
         payments:paymentsSlice,
-        subcategory:subcategorySlice
+        subcategory:subcategorySlice,
+        category:categorySlice
     }
 })
 

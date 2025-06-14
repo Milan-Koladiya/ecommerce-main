@@ -5,6 +5,7 @@ import {
 import DynamicModal from '../../components/dynamicModal';
 import useOrder from '../../hooks/useOrder';
 import usePayments from '../../hooks/usePayment';
+import Snackbar from '@mui/material/Snackbar';
 
 const OrderModal = ({ open, onClose, items, totalAmount }) => {
     const [paymentMethod, setPaymentMethod] = useState('');
@@ -24,7 +25,7 @@ const OrderModal = ({ open, onClose, items, totalAmount }) => {
 
                 const paymentResponse = await createPayment({
                     order_id: order.id,
-                    amount:totalAmount,
+                    amount: totalAmount,
                     status: 'success',
                     payment_method: paymentMethod,
                     paid_at: new Date().toISOString()
@@ -32,6 +33,12 @@ const OrderModal = ({ open, onClose, items, totalAmount }) => {
 
                 if (paymentResponse.type === 'payment/create/fulfilled') {
                     alert('Order and Payment Successful!');
+                    // <Snackbar
+                    //     open={open}
+                    //     autoHideDuration={6000}
+                    //     message="Order and Payment Successful!"
+                    
+                    // />
                     onClose();
                 } else {
                     alert('Payment Failed');

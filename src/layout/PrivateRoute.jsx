@@ -19,8 +19,8 @@ const PrivateRoute = () => {
     return (
         <>
             <Header />
-            <Sidebar />
-            <div style={{ marginLeft: '220px', paddingTop: '60px', minHeight: '100vh' }}>
+            {/* <Sidebar /> */}
+            <div style={{  paddingTop: '60px', minHeight: '100vh' }}>
                 <Outlet />
             </div>
 
