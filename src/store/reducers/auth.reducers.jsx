@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { registerAction, loginAction, verifyEmailAction, resetPasswordAction, forgetPasswordAction } from "../actions/auth.action"
+import { registerAction, loginAction, verifyEmailAction, resetPasswordAction, forgetPasswordAction, logoutAction } from "../actions/auth.action"
 
 const initialState = {
     loading: "",
@@ -76,11 +76,11 @@ const authSlice = createSlice({
             });
 
         builder.addCase(verifyEmailAction.rejected, (state) => {
-                state.loading = "";
-                state.error = true;
-                state.alertType = "danger";
-                state.message = action.payload
-            })
+            state.loading = "";
+            state.error = true;
+            state.alertType = "danger";
+            state.message = action.payload
+        })
 
 
         //Forget Password reducer
@@ -118,9 +118,30 @@ const authSlice = createSlice({
             state.message = action.payload;
             state.alertType = 'danger';
         });
+
+        //logout reducer
+
+        builder.addCase(logoutAction.pending, (state) => {
+            state.loading = '/auth/logout';
+            state.apiName = '/auth/logout';
+        });
+        builder.addCase(logoutAction.fulfilled, (state, action) => {
+            state.loading = '';
+            state.message = action.payload.message;
+            state.alertType = 'success';
+            state.error = null;
+            state.apiName = '/auth/logout';
+        });
+        builder.addCase(logoutAction.rejected, (state, action) => {
+            state.loading = '';
+            state.message = action.payload;
+            state.alertType = 'danger';
+            state.apiName = '/auth/logout';
+        });
     },
 
 });
 
 export const { clearMessage, errorMessage } = authSlice.actions;
 export default authSlice.reducer;
+

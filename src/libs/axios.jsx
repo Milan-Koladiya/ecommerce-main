@@ -9,8 +9,8 @@ const createAxiosInstance = () => {
     });
     instance.interceptors.request.use(
         (config) => {
-            console.log("Calling API:", config.baseURL + config.url);
             const tokens = localStorage.getItem("token") ?? {};
+            console.log("============",tokens)
             config.headers.authorization = `Bearer ${tokens}`;
             return config;
         },
@@ -21,6 +21,7 @@ const createAxiosInstance = () => {
 
     instance.interceptors.response.use(
         (response) => {
+            console.log(response)
             return response;
             
         },

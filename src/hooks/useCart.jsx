@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { clearMessage, errorMessage } from '../store/reducers/cart.reducers'
-import { addToCartAction,updateCartQuantityAction,getCartItemsAction,getCurrentUserCartItemsAction } from '../store/actions/cart.action'
+import { addToCartAction, updateCartQuantityAction, getCartItemsAction, getCurrentUserCartItemsAction, deleteItemFromCartAction } from '../store/actions/cart.action'
 
 const useProduct = () => {
     const {
@@ -14,22 +14,25 @@ const useProduct = () => {
 
     const dispatch = useDispatch();
 
-    const updateCartQuantity=async({product_id,body})=>{
-        return await dispatch(updateCartQuantityAction({product_id,body}))
+    const updateCartQuantity = async ({ product_id, body }) => {
+        return await dispatch(updateCartQuantityAction({ product_id, body }))
     }
 
-    const getCartItems=async()=>{
+    const getCartItems = async () => {
         return await dispatch(getCartItemsAction())
     }
 
-    const addToCart=async(id)=>{
+    const addToCart = async (id) => {
         return await dispatch(addToCartAction(id))
     }
 
-    const viewCartOfUser=async()=>{
+    const viewCartOfUser = async () => {
         return await dispatch(getCurrentUserCartItemsAction())
     }
 
+    const deleteItemFromCart = async (id) => {
+        return await dispatch(deleteItemFromCartAction(id))
+    }
     const closeAlert = () => {
         dispatch(clearMessage());
     };
@@ -46,7 +49,8 @@ const useProduct = () => {
         addToCart,
         updateCartQuantity,
         getCartItems,
-        viewCartOfUser
+        viewCartOfUser,
+        deleteItemFromCart
 
     }
 

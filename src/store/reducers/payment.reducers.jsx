@@ -28,7 +28,7 @@ const paymentsSlice = createSlice({
             state.apiName="payment/create"
         });
         builder.addCase(createPaymentAction.fulfilled, (state, action) => {
-            state.loading = 'payment/create';
+            state.loading = '';
             state.apiName="payment/create"
             state.profile = action.payload.message;
             state.alertType="success"

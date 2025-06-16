@@ -15,9 +15,9 @@ import EditCart from './EditCart';
 import Loader from '../../components/common/loader';
 import OrderModal from '../order/CreateOrder';
 import '../../css/box.css'
-
+import ConfirmBox from '../../components/confirmBox'
 const ViewCart = () => {
-    const { viewCartOfUser } = useCart();
+    const { viewCartOfUser, deleteItemFromCart } = useCart();
     const [cart, setCart] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
@@ -25,6 +25,8 @@ const ViewCart = () => {
     const [selectedCartItem, setSelectedCartItem] = useState(null);
     const [openOrderModal, setOpenOrderModal] = useState(false);
     const [selectedItems, setSelectedItems] = useState([]);
+    const [confirmVisible, setConfirmVisible] = useState(false);
+    const [selectedId, setSelectedId] = useState(null);
 
     useEffect(() => {
         fetchCart();
@@ -60,20 +62,32 @@ const ViewCart = () => {
     };
 
     const handlePlaceOrder = () => {
+
         const itemsToOrder = cart.map((item) => ({
             product_id: item.product.id,
-            price: item.product.price*item.quantity,
-            quantity:item.quantity
+            price: item.product.price * item.quantity,
+            quantity: item.quantity
         }));
         setSelectedItems(itemsToOrder);
         setOpenOrderModal(true);
     };
 
+    const handleDelete = async (id) => {
+        setSelectedId(id);
+        setConfirmVisible(true);
+    }
 
+    const handleConfirmDelete=async()=>{
+        setConfirmVisible(false)
+        const res=await deleteItemFromCart(selectedId)
+        fetchCart()
+      toast.success("Category deleted successfully");
+
+    }    
 
     return (
         <div>
-            <h2 style={{textAlign:'center', margin:'20px 150px', fontFamily: 'serif', fontStyle: 'italic', marginTop: '30px' }}>
+            <h2 style={{ textAlign: 'center', margin: '20px 150px', fontFamily: 'serif', fontStyle: 'italic', marginTop: '30px' }}>
                 Products
             </h2>
             <Box className='boxCart'>
@@ -91,16 +105,7 @@ const ViewCart = () => {
                     <Box sx={{ marginLeft: '22px', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 10 }}>
                         {cart.map((cartItem, index) => (
                             <Card key={cartItem.id || index} sx={{ width: '280px' }}>
-                                <Typography
-                                    marginLeft='230px'
-                                    color='#ad1457'
-                                    gutterBottom
-                                    variant="h6"
-                                    fontWeight="bold"
-                                    fontFamily={'serif'}
-                                    sx={{ cursor: 'pointer' }}
-                                    onClick={() => handleOpenModal(cartItem)}
-                                >
+                                <Typography marginLeft='230px' color='#ad1457' gutterBottom variant="h6" fontWeight="bold" fontFamily={'serif'} sx={{ cursor: 'pointer' }} onClick={() => handleOpenModal(cartItem)}>
                                     Edit
                                 </Typography>
 
@@ -122,7 +127,11 @@ const ViewCart = () => {
                                     <Typography variant="body1" fontWeight="bold">
                                         ₹{cartItem.product.price}
                                     </Typography>
+
                                 </CardContent>
+                                <Button onClick={() => handleDelete(cartItem.product.id)} >
+                                    X Remove
+                                </Button>
                             </Card>
 
                         ))}
@@ -130,17 +139,25 @@ const ViewCart = () => {
                 )}
 
             </Box>
-            <Box sx={{ display: 'flex', justifyContent: 'flex-end',mb:10,mr:5, mt: 4 }}>
-                <Button variant="contained" size="large" onClick={handlePlaceOrder}>
+            <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 10, mr: 23, mt: 4 }}>
+                {cart.length > 0 ? <Button variant="contained" size="large" onClick={handlePlaceOrder}>
                     Place Order
-                </Button>
+                </Button> : null}
             </Box>
 
+            <ConfirmBox
+            show={confirmVisible}
+            onClose={()=>setConfirmVisible(false)}
+            onConfirm={handleConfirmDelete}
+            title="Delete Cart"
+            message="Are you sure you want to  delete this Cart Items?"/>
+
             <OrderModal
+                setCart={setCart}
                 open={openOrderModal}
                 onClose={() => setOpenOrderModal(false)}
                 items={selectedItems}
-                totalAmount={selectedItems.reduce((sum, item) => sum + item.price, 0)}
+                totalAmount={Array.isArray(selectedItems) ? selectedItems.reduce((sum, item) => sum + item.price, 0) : 0}
             />
 
             {selectedCartItem && (

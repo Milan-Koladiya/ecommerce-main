@@ -63,3 +63,20 @@ export const getCurrentUserCartItemsAction=createAsyncThunk(
         }
     }
 )
+
+
+export const deleteItemFromCartAction=createAsyncThunk(
+    'cart/deleteCartItem',
+    async(id,thinkAPI)=>{
+        try{
+            const response=await API.delete(`cart/${id}`)
+            return thinkAPI.fulfillWithValue(response?.data)
+        }
+        catch(error){
+            console.log(error)
+            return thinkAPI.rejectWithValue(
+                error.response?.data?.message || 'Something is wrong here!'
+            )
+        }
+    }
+)

@@ -22,15 +22,22 @@ const userSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder.addCase(fetchProfileAction.pending, (state) => {
-            state.loading = true;
+            state.loading = 'user/getProfile';
+            state.apiName = "user/getProfile"
         });
         builder.addCase(fetchProfileAction.fulfilled, (state, action) => {
-            state.loading = false;
+            state.loading = '';
+            state.alertType = 'success'
             state.profile = action.payload;
+            state.apiName = "user/getProfile"
+
         });
         builder.addCase(fetchProfileAction.rejected, (state, action) => {
-            state.loading = false;
+            state.loading = '';
             state.error = action.payload;
+            state.alertType = 'danger'
+            state.apiName = "user/getProfile"
+
         });
     },
 });

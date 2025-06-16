@@ -47,7 +47,7 @@ const orderSlice = createSlice({
         })
         builder.addCase(createOrderAction.pending, (state) => {
             state.loading = 'order/create';
-            state.apiName = 'order/create'
+            state.apiName = 'order/create';
         });
         builder.addCase(createOrderAction.rejected, (state, action) => {
             state.apiName = 'order/create';

@@ -11,18 +11,17 @@ export const AuthProvider = ({ children }) => {
     const token = localStorage.getItem('token');
 
     useEffect(() => {
-        if (!token) {
-            setAuthUser(null);
-            setLoading(false);
-            return;
-        }
+        // if (!token) {
+        //     setAuthUser(null);
+        //     setLoading(false);
+        //     return;
+        // }
         const fetchUser = async () => {
             try {
                 const user = await API.get("/users/me");
                 setAuthUser({
                     ...user?.data?.data,
                 });
-                console.log("=============", user)
             } catch (error) {
                 console.log("error", error);
                 setAuthUser(null)

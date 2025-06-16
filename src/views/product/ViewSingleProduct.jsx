@@ -8,12 +8,15 @@ import Alert from '../../components/common/alert';
 import AddToCart from '../../views/cart/AddToCart'
 import '../../css/box.css';
 import Snackbar from '@mui/material/Snackbar';
+import OrderModal from "../order/CreateOrder";
 
 const ViewSingleProduct = () => {
     const { id } = useParams();
     const { viewProductById } = useProduct();
     const { apiName, alertType, message, addToCart, closeAlert } = useCart()
     const [product, setProduct] = useState(null);
+    const [openOrderModal, setOpenOrderModal] = useState(false);
+    const [selectedItems, setSelectedItems] = useState([]);
 
     useEffect(() => {
         (async () => {
@@ -33,16 +36,28 @@ const ViewSingleProduct = () => {
 
     if (!product) return <Loader />;
 
+    const handleBuyNow = () => {
+        const orderItems=[
+        {
+            product_id:product.id,
+            quantity:1,
+            price:product.price
+        }
+        ]
+        setSelectedItems(orderItems)
+            setOpenOrderModal(true)
+    }
+
     return (
         <div>
-            <h2 style={{ textAlign:'center', fontFamily: 'serif', fontStyle: 'italic', marginTop: '30px' }}>Product</h2>
+            <h2 style={{ textAlign: 'center', fontFamily: 'serif', fontStyle: 'italic', marginTop: '30px' }}>Product</h2>
 
             {apiName === 'cart/addToCart' && message && (
                 <Box sx={{ mx: 'auto', width: 'fit-content', mt: 2 }}>
                     <Snackbar
                         open={open}
                         autoHideDuration={6000}
-                        message={message+"!"}
+                        message={message + "!"}
                     />
                     {/* <Alert type={alertType} message={message} /> */}
                 </Box>
@@ -50,7 +65,7 @@ const ViewSingleProduct = () => {
 
             <Box className="box" marginLeft={'500px'} marginTop={'50px'} p={5} borderRadius={'10px'} bgcolor={'#f8f9fa'}>
                 <Grid container spacing={4}>
-                    <Grid item xs={12} md={6}>
+                    <Grid>
 
                         <Box display="flex" flexDirection="column" alignItems="center">
                             <img src={product.image_url} alt={product.name} style={{ width: "100%", maxWidth: 600, borderRadius: 8 }} />
@@ -58,13 +73,13 @@ const ViewSingleProduct = () => {
 
                         <Box marginTop={'20px'} display="flex" gap={2} mb={3}>
                             <AddToCart product={product} />
-                            <Button variant="contained" color="secondary" style={{ padding: '10px 90px ' }}>
+                            <Button variant="contained" onClick={handleBuyNow} color="secondary" style={{ padding: '10px 90px ' }}>
                                 Buy Now
                             </Button>
                         </Box>
                     </Grid>
 
-                    <Grid item xs={12} md={6}>
+                    <Grid>
                         <Typography marginLeft='10px' marginTop={'40px'} variant="h5" fontWeight="bold">
                             {product.name.charAt(0).toUpperCase() + product.name.slice(1)}
                         </Typography>
@@ -75,7 +90,7 @@ const ViewSingleProduct = () => {
                             <Typography component="span" color="error" sx={{ ml: 1 }}> 5% off </Typography>
                         </Typography>
 
-                        <Box mt={1} mb={2}> <Rating value={4} readOnly size="small" /> <Typography variant="caption">(4300 reviews)</Typography></Box>
+                        <Box> <Rating value={4} readOnly size="small" /> <Typography variant="caption">(4300 reviews)</Typography></Box>
 
                         <Divider sx={{ my: 3 }} />
 
@@ -87,6 +102,14 @@ const ViewSingleProduct = () => {
                     </Grid>
                 </Grid>
             </Box>
+            
+            <OrderModal 
+            setProduct={setProduct}
+            open={openOrderModal}
+            onClose={()=>setOpenOrderModal(false)}
+            items={selectedItems}
+            totalAmount={selectedItems.map((item)=>item.price)}
+             />
         </div>
     );
 };

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addToCartAction, updateCartQuantityAction, getCurrentUserCartItemsAction,getCartItemsAction } from "../actions/cart.action"
+import { addToCartAction, updateCartQuantityAction,deleteItemFromCartAction, getCurrentUserCartItemsAction,getCartItemsAction } from "../actions/cart.action"
 
 const initialState = {
     loading: "",
@@ -92,6 +92,23 @@ const cartSlice = createSlice({
             state.message = action.payload.message;
         });
         builder.addCase(getCurrentUserCartItemsAction.rejected, (state, action) => {
+            state.loading = "";
+            state.alertType = "danger";
+            state.message = action.payload
+        });
+
+        //delete item form cart reducer
+                builder.addCase(deleteItemFromCartAction.pending, (state) => {
+            state.apiName = "cart/deleteItemFromCart";
+            state.loading = "cart/deleteItemFromCart";
+        });
+        builder.addCase(deleteItemFromCartAction.fulfilled, (state, action) => {
+            state.loading = "";
+            state.apiName = "cart/deleteItemFromCart"
+            state.alertType = "success";
+            state.message = action.payload.message;
+        });
+        builder.addCase(deleteItemFromCartAction.rejected, (state, action) => {
             state.loading = "";
             state.alertType = "danger";
             state.message = action.payload

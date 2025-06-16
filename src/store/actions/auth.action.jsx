@@ -99,3 +99,22 @@ export const resetPasswordAction = createAsyncThunk(
     }
   }
 );
+
+
+export const logoutAction=createAsyncThunk(
+  "auth/logout",
+  async(_,thinkAPI)=>{
+    try{
+      localStorage.removeItem("user")
+      localStorage.removeItem('token')
+      localStorage.removeItem('refresh_token')
+      return true;
+    }
+    catch(error){
+        console.log(`Something want wrong in logout ${error}`)
+      return thinkAPI.rejectWithValue(
+        error.response?.data?.message || 'Something is wrong here!'
+      )
+    }
+  }
+)

@@ -4,7 +4,8 @@ import {
     registerAction,
     verifyEmailAction,
     forgetPasswordAction,
-    resetPasswordAction
+    resetPasswordAction,
+    logoutAction
 } from '../store/actions/auth.action'
 import { clearMessage, errorMessage } from '../store/reducers/auth.reducers'
 
@@ -42,6 +43,11 @@ const useAuth = () => {
         return await dispatch(resetPasswordAction({ token, newPassword }));
     };
 
+    const logout=async()=>{
+        await dispatch(logoutAction())
+        
+    };
+
     const closeAlert = () => {
         dispatch(clearMessage());
     };
@@ -58,8 +64,8 @@ const useAuth = () => {
         Register,
         verifyEmail,
         forgetPassword,
-        resetPassword
-        
+        resetPassword,
+        logout
     }
 }
 

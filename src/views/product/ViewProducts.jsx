@@ -84,7 +84,6 @@ const Dashboard = () => {
     };
 
     const handleFilter = async (filterData) => {
-        console.log(filterData)
         const res = await filterProduct(filterData);
         if (res?.payload?.data) {
             setProduct(res.payload.data);
@@ -101,7 +100,7 @@ const Dashboard = () => {
                         <Card key={pro.id || index} sx={{ width: '280px', margin: 'auto' }} >
                             <CardMedia sx={{marginLeft:'15px',marginRight:'15px', height: 200 }} image={pro.image_url || '/image/profile.png'} />
                             <CardContent>
-                                <Typography variant="h6" fontWeight="bold">{pro.name}</Typography>
+                                <Typography variant="h6" fontWeight="bold">{pro.name.charAt(0).toUpperCase()+pro.name.slice(1)}</Typography>
                                 <Typography variant="body2">{pro.description || 'No description available'}</Typography>
                                 <Typography variant="body1" fontWeight="bold">₹{pro.price}</Typography>
                             </CardContent>

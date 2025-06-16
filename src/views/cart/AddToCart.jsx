@@ -47,6 +47,7 @@ const AddToCart = ({ product }) => {
                 product_id: product.id,
                 quantity: existing.quantity + 1,
             });
+            
         } else {
             dispatch(
                 errorMessage({

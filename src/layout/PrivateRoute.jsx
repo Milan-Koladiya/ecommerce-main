@@ -7,12 +7,13 @@ import Sidebar from "./Sidebar";
 
 const PrivateRoute = () => {
     const { loading, authUser } = useAuth();
+    const token = localStorage.getItem('token');
 
     if (loading) {
         return <Loader />;
     }
 
-    if (!authUser) {
+    if (!authUser ) {
         return <Navigate to="/login" />;
     }
 
@@ -20,7 +21,7 @@ const PrivateRoute = () => {
         <>
             <Header />
             {/* <Sidebar /> */}
-            <div style={{  paddingTop: '60px', minHeight: '100vh' }}>
+            <div style={{paddingTop: '60px'}}>
                 <Outlet />
             </div>
 
