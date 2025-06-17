@@ -10,7 +10,6 @@ const createAxiosInstance = () => {
     instance.interceptors.request.use(
         (config) => {
             const tokens = localStorage.getItem("token") ?? {};
-            console.log("============",tokens)
             config.headers.authorization = `Bearer ${tokens}`;
             return config;
         },
@@ -21,7 +20,6 @@ const createAxiosInstance = () => {
 
     instance.interceptors.response.use(
         (response) => {
-            console.log(response)
             return response;
             
         },

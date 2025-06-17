@@ -5,7 +5,7 @@ import localStorage from '../../utils/localStorage';
 import API from '../../libs/axios'
 
 export const fetchCategoryAction = createAsyncThunk(
-  'user/fetchProfile',
+  'category/getallcategory',
   async (_, thunkAPI) => {
     try {
       const response = await API.get('categories/');

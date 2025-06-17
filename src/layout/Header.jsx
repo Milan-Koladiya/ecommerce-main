@@ -111,9 +111,9 @@ const Header = () => {
             <img width="40" height="40" src="/image/order.png" alt="Profile" className="rounded-circle border" />
           </p>
 
-          <button className="btn btn-primary" onClick={handleLogOut}>
+          {authUser?<button className="btn btn-primary" onClick={handleLogOut}>
             Logout
-          </button>
+          </button>:null}
 
         </div>
       </nav>

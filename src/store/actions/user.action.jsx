@@ -9,7 +9,6 @@ export const fetchProfileAction = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await API.get('users/me');
-      console.log("====================================",response.data.data)
       return thunkAPI.fulfillWithValue(response?.data?.data); 
     } catch (error) {
       return thunkAPI.rejectWithValue(
