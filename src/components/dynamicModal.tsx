@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 
-interface DynamicModalProps{
+type IDynamicModalProps={
   show?:any,
   onHide?:()=>void,
   title?:string,
@@ -17,7 +17,7 @@ interface DynamicModalProps{
   actions?:any
 }
 
-const DynamicModal:React.FC<DynamicModalProps> = ({ show, onHide, title, children, actions }) => {
+const DynamicModal:React.FC<IDynamicModalProps> = ({ show, onHide, title, children, actions }) => {
   return (
     <Dialog
       open={show}

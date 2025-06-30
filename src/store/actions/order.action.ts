@@ -2,7 +2,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import API from '../../libs/axios'
 import type { APIsuccessResponse } from '../../libs/axios'
-import type {IOrder,createOrderType} from '../../types/orderType'
+import type {IOrder,createOrderType} from '../../types/order.type'
 
 export const fetchOrderAction = createAsyncThunk<APIsuccessResponse>(
   'order/fetchOrder',

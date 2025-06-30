@@ -9,7 +9,7 @@ import AddToCart from '../cart/AddToCart'
 import '../../css/box.css';
 import Snackbar from '@mui/material/Snackbar';
 import OrderModal from "../order/CreateOrder";
-import type { IProduct } from "../../types/product.types";
+import type { IProduct } from "../../types/product.type";
 
 interface OrderItems {
     product_id: string|undefined,

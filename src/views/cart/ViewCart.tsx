@@ -7,7 +7,7 @@ import Loader from '../../components/common/loader';
 import OrderModal from '../order/CreateOrder';
 import '../../css/box.css'
 import ConfirmBox from '../../components/confirmBox'
-import type { ICart } from '../../types/cartType';
+import type { ICart } from '../../types/cart.type';
 
 
 interface orderItemType {

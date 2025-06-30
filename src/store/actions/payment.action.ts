@@ -4,7 +4,7 @@ import axios from 'axios';
 import localStorage from '../../utils/localStorage';
 import API from '../../libs/axios'
 import type { APIsuccessResponse } from '../../libs/axios'
-import type { IPayment } from '../../types/payment.types'
+import type { IPayment } from '../../types/payment.type'
 
 export const createPaymentAction = createAsyncThunk<APIsuccessResponse, IPayment>(
   'payment/create',

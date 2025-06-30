@@ -1,4 +1,4 @@
-import type { IProduct } from "./product.types"
+import type { IProduct } from "./product.type"
 
 export interface IOrder_items {
     id?:string,
@@ -7,8 +7,7 @@ export interface IOrder_items {
     price?: number,
     quantity?: number,
     IOrder?:IOrder,
-        product?:IProduct
-
+    product?:IProduct
 }
 
 export interface IOrder {
@@ -20,7 +19,7 @@ export interface IOrder {
     order_items?:IOrder_items[]
 }
 
-export interface createOrderType{
+export interface CreateOrderType{
     items?:IOrder_items[],
     payment_reference:string
 }

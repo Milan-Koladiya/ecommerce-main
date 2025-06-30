@@ -8,8 +8,8 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import SearchIcon from '@mui/icons-material/Search';
 import useCategory from '../hooks/useCategory';
 import useSubcategory from '../hooks/useSubcategory';
-import type { ICategory } from '../types/categoryType';
-import type { ISubcategory } from '../types/subcategory.types';
+import type { ICategory } from '../types/category.type';
+import type { ISubcategory } from '../types/subcategory.type';
 
 interface ProductSideBarProps {
   onFilter: any

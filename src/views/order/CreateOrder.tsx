@@ -9,8 +9,8 @@ import usePayments from '../../hooks/usePayment';
 import { yupResolver } from '@hookform/resolvers/yup'
 import { orderValidationSchema } from '../../schema/orderModal.schema'
 import { useForm } from 'react-hook-form'
-import type { ICart } from "../../types/cartType"
-import type { IOrder_items } from '../../types/orderType';
+import type { ICart } from "../../types/cart.type"
+import type { IOrder_items } from '../../types/order.type';
 
 
 type OrderModalProps = {

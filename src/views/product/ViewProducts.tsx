@@ -4,7 +4,7 @@ import useProduct from '../../hooks/useProduct';
 import { Box, Card, CardActions, CardContent, CardMedia, Button, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import ProductSidebar from '../../layout/ProductSidebar';
-import type { IProduct } from '../../types/product.types';
+import type { IProduct } from '../../types/product.type';
 
 const Dashboard = () => {
     const { viewProduct, filterProduct } = useProduct();
@@ -20,7 +20,6 @@ const Dashboard = () => {
         const res: any = await viewProduct();
         if (res?.payload?.data) {
             setProduct(res.payload.data);
-            console.log(product.length)
         }
     };
 

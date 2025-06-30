@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchProductAction, fetchSingleProductAction, filterProductAction } from "../actions/product.action"
-import { intialStateType } from "../../types/stateType";
+import type { IntialStateType } from "../../types/state.type";
 
-const initialState: intialStateType = {
+const initialState: IntialStateType = {
     loading: "",
     message: "",
     error: false,

@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { clearMessage, errorMessage } from '../store/reducers/order.reducer'
 import { fetchOrderAction,createOrderAction } from '../store/actions/order.action'
 import type { AppDispatch, RootState } from '../store';
-import type { IOrder,createOrderType } from '../types/orderType';
+import type { IOrder,createOrderType } from '../types/order.type';
 
 const useOrder = () => {
     const {

@@ -13,7 +13,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { forgetPasswordSchema } from '../../schema/auth.schema';
 import useAuthentication from '../../hooks/useAuthentication';
 import Alert from '../../components/common/alert';
-import type { IUser } from '../../types/authType';
 
 const ForgetPassword = () => {
   const { loading, apiName, forgetPassword, alertType, message, closeAlert } = useAuthentication();

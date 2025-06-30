@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { clearMessage, errorMessage } from '../store/reducers/product.reducers'
 import { fetchProductAction, fetchSingleProductAction, filterProductAction } from '../store/actions/product.action'
 import type { AppDispatch, RootState } from '../store';
-import { IProduct } from '../types/product.types';
+import { IProduct } from '../types/product.type';
 
 const useProduct = () => {
     const {

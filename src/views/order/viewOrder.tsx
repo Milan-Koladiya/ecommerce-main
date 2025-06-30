@@ -7,7 +7,7 @@ import {
     Box
 } from '@mui/material';
 import useOrder from '../../hooks/useOrder';
-import type { IOrder, IOrder_items } from '../../types/orderType';
+import type { IOrder, IOrder_items } from '../../types/order.type';
 
 const ViewOrder = () => {
     const { viewOrderOfUser } = useOrder();

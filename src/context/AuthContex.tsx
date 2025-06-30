@@ -5,10 +5,11 @@ import Loader from '../components/common/loader'
 
 const AuthContext = createContext<any>(null)
 
-interface AuthProviderProps{
+type IAuthProviderProps={
     children:React.ReactNode
 }
-export const AuthProvider:React.FC<AuthProviderProps> = ({ children }) => {
+
+export const AuthProvider:React.FC<IAuthProviderProps> = ({ children }) => {
     const [authUser, setAuthUser] = useState(localStorage.getItem('user'))
     const [loading, setLoading] = useState(true);
     const token = localStorage.getItem('token');

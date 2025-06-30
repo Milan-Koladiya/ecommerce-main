@@ -1,5 +1,5 @@
-import type { ICategory } from "./categoryType";
-import type { ISubcategory } from "./subcategory.types";
+import type { ICategory } from "./category.type";
+import type { ISubcategory } from "./subcategory.type";
 
 export interface IProduct{
     id?:string,

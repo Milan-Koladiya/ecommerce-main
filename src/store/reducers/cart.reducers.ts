@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { addToCartAction, updateCartQuantityAction, deleteItemFromCartAction, getCurrentUserCartItemsAction, getCartItemsAction } from "../actions/cart.action"
-import type { intialStateType } from "../../types/stateType"
+import type { IntialStateType } from "../../types/state.type"
 
-const initialState: intialStateType = {
+const initialState: IntialStateType = {
     loading: "",
     message: "",
     error: false,

@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchCategoryAction } from '../actions/category.action';
-import type { intialStateType } from '../../types/stateType';
+import type { IntialStateType } from '../../types/state.type';
 
-const initialState: intialStateType = {
+const initialState: IntialStateType = {
     apiName: "",
     loading: "",
     error: false,

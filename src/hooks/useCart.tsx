@@ -2,8 +2,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { clearMessage, errorMessage } from '../store/reducers/cart.reducers'
 import { addToCartAction, updateCartQuantityAction, getCartItemsAction, getCurrentUserCartItemsAction, deleteItemFromCartAction } from '../store/actions/cart.action'
 import type { AppDispatch, RootState } from '../store';
-import type { ICart } from '../types/cartType';
-import type { EditCartType } from '../types/cartType'
+import type { ICart } from '../types/cart.type';
+import type { IEditCartArgs } from '../types/cart.type'
+
 const useProduct = () => {
     const {
         loading,
@@ -16,7 +17,7 @@ const useProduct = () => {
 
     const dispatch = useDispatch<AppDispatch>();
 
-    const updateCartQuantity = async ({ product_id, body }: EditCartType) => {
+    const updateCartQuantity = async ({ product_id, body }: IEditCartArgs) => {
         return await dispatch(updateCartQuantityAction({ product_id, body }))
     }
 

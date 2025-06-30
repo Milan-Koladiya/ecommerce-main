@@ -4,7 +4,7 @@ export interface ICategory{
     seller_id:string
 }
 
-export interface EditCategoryType{
-    id:string,
-    body:ICategory
-}
+// export interface EditCategoryType{
+//     id:string,
+//     body:ICategory
+// }

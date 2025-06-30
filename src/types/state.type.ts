@@ -1,6 +1,6 @@
-import type { IUser } from "./authType";
+import type { IUser } from "./auth.type";
 
-export interface intialStateType{
+export interface IntialStateType{
     loading:string,
     message:string,
     error:boolean,

@@ -1,4 +1,4 @@
-import type { IProduct } from "./product.types"
+import type { IProduct } from "./product.type"
 
 export interface ICart {
     id?: string,
@@ -8,9 +8,7 @@ export interface ICart {
     product?:IProduct
 }
 
-
-
-export interface EditCartType{
+export interface IEditCartArgs{
     product_id:string,
     body:ICart
 }

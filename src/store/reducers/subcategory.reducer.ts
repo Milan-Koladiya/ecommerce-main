@@ -1,15 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { getSubcategoriesByCategoryIdAction,fetchSubcategoryAction } from '../actions/subcategory.action';
+import type { IntialStateType } from "../../types/state.type";
+
+const initialState:IntialStateType= {
+        loading: "",
+        error:false,
+        message:"",
+        apiName:"",
+        alertType:""
+    }
 
 const subcategorySlice = createSlice({
     name: 'subcategory',
-    initialState: {
-        loading: "",
-        message: "",
-        error: false,
-        apiName: "",
-        alertType: "",
-    },
+    initialState,
     reducers: {
         clearMessage: (state) => {
             state.alertType = "";

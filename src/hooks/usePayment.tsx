@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { clearMessage, errorMessage } from '../store/reducers/payment.reducers'
 import { createPaymentAction } from '../store/actions/payment.action'
 import type { AppDispatch, RootState } from '../store';
-import type { IPayment } from '../types/payment.types';
+import type { IPayment } from '../types/payment.type';
 
 const usePayments = () => {
     const {

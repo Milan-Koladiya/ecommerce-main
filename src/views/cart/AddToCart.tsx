@@ -6,8 +6,8 @@ import { useDispatch } from 'react-redux';
 import { errorMessage } from '../../store/reducers/cart.reducers';
 import { useAuth } from '../../context/AuthContex';
 import { useNavigate } from 'react-router-dom';
-import type { IProduct } from '../../types/product.types';
-import type { ICart } from '../../types/cartType';
+import type { IProduct } from '../../types/product.type';
+import type { ICart } from '../../types/cart.type';
 
 type ProductProps={
     product:IProduct

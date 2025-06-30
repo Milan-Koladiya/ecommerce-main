@@ -1,4 +1,4 @@
-import type { ICategory } from "./categoryType";
+import type { ICategory } from "./category.type";
 
 export interface ISubcategory{
     id:string,

@@ -9,7 +9,7 @@ import {
 } from '../store/actions/auth.action'
 import { clearMessage, errorMessage } from '../store/reducers/auth.reducers'
 import type { AppDispatch, RootState } from '../store';
-import type { IUser,resetPasswordType } from '../types/authType'
+import type { IUser,IResetPassword } from '../types/auth.type'
 
 const useAuth = () => {
     const {
@@ -40,7 +40,7 @@ const useAuth = () => {
         return await dispatch(forgetPasswordAction(email));
     };
 
-    const resetPassword = async ({ token, newPassword }:resetPasswordType) => {
+    const resetPassword = async ({ token, newPassword }:IResetPassword) => {
         return await dispatch(resetPasswordAction({ token, newPassword }));
     };
 
