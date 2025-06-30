@@ -16,7 +16,7 @@ import {
 } from '@mui/material';
 
 
-type RegisterValue = {
+type IRegisterValue = {
   first_name: string,
   last_name: string,
   email: string,
@@ -32,7 +32,7 @@ const Register = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<RegisterValue>({
+  } = useForm<IRegisterValue>({
     resolver: yupResolver(signupSchema),
     defaultValues: {
       first_name: '',

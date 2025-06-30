@@ -11,10 +11,11 @@ import useSubcategory from '../hooks/useSubcategory';
 import type { ICategory } from '../types/category.type';
 import type { ISubcategory } from '../types/subcategory.type';
 
-interface ProductSideBarProps {
+type IProductSideBarProps={
   onFilter: any
 }
-const ProductSidebar: React.FC<ProductSideBarProps> = ({ onFilter }) => {
+
+const ProductSidebar: React.FC<IProductSideBarProps> = ({ onFilter }) => {
   const { viewCategory } = useCategory();
   const { viewSubcategory } = useSubcategory();
 

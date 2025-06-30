@@ -9,11 +9,11 @@ import { useNavigate } from 'react-router-dom';
 import type { IProduct } from '../../types/product.type';
 import type { ICart } from '../../types/cart.type';
 
-type ProductProps={
+type IProductProps={
     product:IProduct
 }
 
-const AddToCart = ({ product }:ProductProps) => {
+const AddToCart = ({ product }:IProductProps) => {
     const {
         getCartItems,
         addToCart,

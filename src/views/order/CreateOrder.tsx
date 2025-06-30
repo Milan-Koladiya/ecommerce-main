@@ -13,7 +13,7 @@ import type { ICart } from "../../types/cart.type"
 import type { IOrder_items } from '../../types/order.type';
 
 
-type OrderModalProps = {
+type IOrderModalProps = {
     open: boolean;
     onClose: () => void;
     items: IOrder_items[];
@@ -21,7 +21,7 @@ type OrderModalProps = {
     setCart?: React.Dispatch<React.SetStateAction<ICart[]>>;
 };
 
-const OrderModal: React.FC<OrderModalProps> = ({ open, onClose, items, totalAmount, setCart }) => {
+const OrderModal: React.FC<IOrderModalProps> = ({ open, onClose, items, totalAmount, setCart }) => {
     const { createOrder, loading: orderLoading } = useOrder();
     const { createPayment, loading: paymentLoading } = usePayments();
 

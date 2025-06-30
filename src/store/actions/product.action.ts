@@ -3,7 +3,7 @@ import axios from 'axios';
 import localStorage from '../../utils/localStorage'
 import API from '../../libs/axios'
 import type { APIsuccessResponse } from '../../libs/axios'
-import { IProduct } from '../../types/product.type';
+import type { IProduct } from '../../types/product.type';
 
 
 export const fetchProductAction = createAsyncThunk<APIsuccessResponse>(

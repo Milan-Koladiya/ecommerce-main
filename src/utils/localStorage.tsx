@@ -3,15 +3,15 @@ export default class Storage {
         localStorage.clear();
     }
 
-    static getItem(key) {
+    static getItem(key:string) {
         return JSON.parse(localStorage.getItem(key) || 'false')
     }
 
-    static setItem(key, value) {
+    static setItem(key:string, value:any) {
         localStorage.setItem(key, JSON.stringify(value));
     }
 
-    static removeItem(key) {
+    static removeItem(key:string) {
         localStorage.removeItem(key)
     }
 }

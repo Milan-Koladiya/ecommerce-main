@@ -3,7 +3,7 @@ import axios from 'axios';
 import localStorage from '../../utils/localStorage'
 import API from '../../libs/axios'
 import type { APIsuccessResponse } from '../../libs/axios'
-import type { EditCartType,ICart } from '../../types/cart.type'
+import type { IEditCartArgs,ICart } from '../../types/cart.type'
 
 export const addToCartAction = createAsyncThunk<APIsuccessResponse,ICart>(
     'cart/addtocart',
@@ -35,7 +35,7 @@ export const getCartItemsAction = createAsyncThunk<APIsuccessResponse>(
     }
 )
 
-export const updateCartQuantityAction = createAsyncThunk<APIsuccessResponse, EditCartType>(
+export const updateCartQuantityAction = createAsyncThunk<APIsuccessResponse, IEditCartArgs>(
     'cart/updateQuentity',
     async ({ product_id, body }, thinkAPI) => {
         try {

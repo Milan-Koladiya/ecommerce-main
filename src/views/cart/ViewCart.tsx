@@ -10,7 +10,7 @@ import ConfirmBox from '../../components/confirmBox'
 import type { ICart } from '../../types/cart.type';
 
 
-interface orderItemType {
+type orderItemType = {
     product_id: string,
     price: number,
     quantity: number

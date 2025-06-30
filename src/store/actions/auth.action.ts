@@ -3,7 +3,7 @@ import axios from 'axios';
 import localStorage from '../../utils/localStorage'
 import API from '../../libs/axios'
 import type { APIsuccessResponse } from '../../libs/axios'
-import type { resetPasswordType,IUser } from '../../types/auth.type'
+import type { IResetPassword,IUser } from '../../types/auth.type'
 
 export const registerAction = createAsyncThunk<APIsuccessResponse,IUser>(
   'auth/regsiter',
@@ -81,7 +81,7 @@ export const forgetPasswordAction = createAsyncThunk<APIsuccessResponse,IUser>(
 );
 
 
-export const resetPasswordAction = createAsyncThunk<APIsuccessResponse, resetPasswordType>(
+export const resetPasswordAction = createAsyncThunk<APIsuccessResponse, IResetPassword>(
   'auth/resetPassword',
   async ({ token, newPassword }, thinkAPI) => {
     try {

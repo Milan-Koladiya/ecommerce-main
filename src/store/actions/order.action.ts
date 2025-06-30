@@ -2,7 +2,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import API from '../../libs/axios'
 import type { APIsuccessResponse } from '../../libs/axios'
-import type {IOrder,createOrderType} from '../../types/order.type'
+import type {IOrder,CreateOrderType} from '../../types/order.type'
 
 export const fetchOrderAction = createAsyncThunk<APIsuccessResponse>(
   'order/fetchOrder',
@@ -19,7 +19,7 @@ export const fetchOrderAction = createAsyncThunk<APIsuccessResponse>(
 );
 
 
-export const createOrderAction = createAsyncThunk<APIsuccessResponse,createOrderType>(
+export const createOrderAction = createAsyncThunk<APIsuccessResponse,CreateOrderType>(
   'orders/create',
   async (body, thunkAPI) => {
     try {

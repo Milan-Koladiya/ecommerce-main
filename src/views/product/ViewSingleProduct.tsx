@@ -11,7 +11,7 @@ import Snackbar from '@mui/material/Snackbar';
 import OrderModal from "../order/CreateOrder";
 import type { IProduct } from "../../types/product.type";
 
-interface OrderItems {
+type IOrderItems={
     product_id: string|undefined,
     quantity: number,
     price: number
@@ -23,7 +23,7 @@ const ViewSingleProduct = () => {
     const { apiName, alertType, message, addToCart, closeAlert } = useCart()
     const [product, setProduct] = useState<IProduct | null>(null);
     const [openOrderModal, setOpenOrderModal] = useState(false);
-    const [selectedItems, setSelectedItems] = useState<OrderItems[]>([]);
+    const [selectedItems, setSelectedItems] = useState<IOrderItems[]>([]);
     const [snackbarOpen, setSnackbarOpen] = useState(false);
 
     useEffect(() => {
